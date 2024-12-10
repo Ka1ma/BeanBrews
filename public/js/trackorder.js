@@ -1,33 +1,21 @@
 document.getElementById("trackOrderBtn").addEventListener("click", () => {
     const orderId = document.getElementById("orderIdInput").value;
-
-    // Clear previous messages
-    document.getElementById("orderDetails").style.display = "none";
-    document.getElementById("orderError").style.display = "none";
+    const orderStatus = document.getElementById("orderDetails");
 
     if (!orderId) {
-        document.getElementById("orderError").textContent = "Please enter a valid Order ID.";
-        document.getElementById("orderError").style.display = "block";
+        orderStatus.textContent = "Please enter a valid Order ID.";
         return;
     }
 
-    // Fetch order data from the server
-    fetch(`/api/orders/${orderId}`)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Order not found");
-            }
-            return response.json();
-        })
-        .then((order) => {
-            document.getElementById("orderId").textContent = order.id;
-            document.getElementById("orderStatus").textContent = order.status;
-            document.getElementById("orderDate").textContent = order.date;
+    const mockOrders = {
+        "12345": "Preparing your order.",
+        "67890": "Out for delivery.",
+        "11223": "Delivered."
+    };
 
-            document.getElementById("orderDetails").style.display = "block";
-        })
-        .catch((error) => {
-            document.getElementById("orderError").textContent = error.message;
-            document.getElementById("orderError").style.display = "block";
-        });
+    if (mockOrders[orderId]) {
+        orderStatus.textContent = `Order Status: ${mockOrders[orderId]}`;
+    } else {
+        orderStatus.textContent = "Order not found. Please check the Order ID.";
+    }
 });
