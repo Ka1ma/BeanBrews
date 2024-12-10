@@ -1,27 +1,27 @@
-$(document).ready(function () {
-    if (localStorage.getItem("cart") == null) {
-        var cart = {};
-    } else {
-        cart = JSON.parse(localStorage.getItem("cart"));
-    }
-    listcart(cart);
-});
-function listcart(cart) {
-  let str_order=``;
-  for (let item in cart) {
-      str_order+=`<div class="row">
-      <div class="col">
-        `+cart[item].name+`
-      </div>
-      <div class="col">
-        x`+ cart[item].quantity +`
-      </div>
-      <div class="col">
-        = Rs.`+ (cart[item].price)*(cart[item].quantity) +`
-      </div>
-    </div>`
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  const orderList = document.querySelector('.order-list');
+  const totalElement = document.querySelector('.total');
 
-  if(str_order == ``) str_order = `<h5 class='default'> Your Cart is Empty. Click here to Go to Menu </h5>`;
-  document.getElementById("items").innerHTML= str_order;
-}
+  const cart = [
+      { name: 'Espresso', quantity: 1, price: 3.0 },
+      { name: 'Latte', quantity: 2, price: 4.0 },
+      { name: 'Cappuccino', quantity: 1, price: 4.5 }
+  ];
+
+  let total = 0;
+
+  cart.forEach(item => {
+      const row = document.createElement('div');
+      row.classList.add('item');
+      row.innerHTML = `
+          <span>${item.name}</span>
+          <span class="quantity">x${item.quantity}</span>
+          <span class="price">$${(item.price * item.quantity).toFixed(2)}</span>
+      `;
+      orderList.appendChild(row);
+
+      total += item.price * item.quantity;
+  });
+
+  totalElement.textContent = `Total: $${total.toFixed(2)}`;
+});
