@@ -1,18 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const faqQuestions = document.querySelectorAll(".faq-question");
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
 
-    faqQuestions.forEach(function (question) {
-        question.addEventListener("click", function () {
-            const answer = question.nextElementSibling;
-            const arrow = question.querySelector(".arrow");
-
-            if (answer.style.display === "block" || getComputedStyle(answer).display === "block") {
-                answer.style.display = "none";
-                arrow.textContent = "+";
-            } else {
-                answer.style.display = "block";
-                arrow.textContent = "-";
-            }
+    faqItems.forEach(item => {
+        item.querySelector('h3').addEventListener('click', () => {
+            item.classList.toggle('open');
         });
     });
 });
