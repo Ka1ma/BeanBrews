@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#c9a66b"/>
+  <path d="M50,70 L150,70 L150,130 L50,130 Z" fill="#f5d6a7"/>
+  <path d="M60,85 L140,85" stroke="#d4b37f" stroke-width="10"/>
+  <path d="M60,115 L140,115" stroke="#d4b37f" stroke-width="10"/>
+  <text x="100" y="160" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Chicken Sandwich</text>
+</svg>

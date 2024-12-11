@@ -1,0 +1,40 @@
+{
+  "name": "beanbrews",
+  "version": "1.0.0",
+  "description": "A modern cafe POS system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "test": "jest",
+    "seed": "node scripts/seedDB.js"
+  },
+  "keywords": [
+    "cafe",
+    "pos",
+    "management",
+    "coffee",
+    "mongodb",
+    "express"
+  ],
+  "author": "BeanBrews Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^6.10.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.1",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "puppeteer": "^23.10.3"
+  }
+}

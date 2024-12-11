@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Image Generator</title>
+</head>
+<body>
+    <canvas id="productCanvas" width="300" height="300"></canvas>
+    <script>
+        const canvas = document.getElementById('productCanvas');
+        const ctx = canvas.getContext('2d');
+        const products = [
+            { name: 'Espresso', color: '#4a2c2a' },
+            { name: 'Cappuccino', color: '#8b6e65' },
+            { name: 'Latte', color: '#b18f7e' },
+            { name: 'Green Tea', color: '#90a959' },
+            { name: 'Earl Grey', color: '#b47e4d' },
+            { name: 'Croissant', color: '#d4b37f' },
+            { name: 'Chocolate Muffin', color: '#3c2f2f' },
+            { name: 'Chicken Sandwich', color: '#c9a66b' },
+            { name: 'Orange Juice', color: '#ffa500' },
+            { name: 'Iced Chocolate', color: '#7b3f00' }
+        ];
+
+        function drawProduct(name, color) {
+            // Clear canvas
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, 300, 300);
+
+            // Draw product background
+            ctx.fillStyle = color;
+            ctx.fillRect(50, 50, 200, 200);
+
+            // Add product name
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(name, 150, 270);
+
+            // Add some decoration
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(60, 60, 180, 180);
+        }
+
+        // Generate images for each product
+        products.forEach(product => {
+            drawProduct(product.name, product.color);
+            const img = canvas.toDataURL('image/png');
+            console.log(`Generated image for ${product.name}`);
+        });
+    </script>
+</body>
+</html>

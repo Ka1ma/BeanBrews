@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Coffee Cup -->
+    <path d="M340 150H172C154.327 150 140 164.327 140 182V342C140 377.346 168.654 406 204 406H308C343.346 406 372 377.346 372 342V182C372 164.327 357.673 150 340 150Z" fill="#8B4513"/>
+    <!-- Steam -->
+    <path d="M220 130C220 130 210 110 220 90C230 70 240 70 240 50C240 30 230 20 240 10" stroke="#8B4513" stroke-width="8" stroke-linecap="round"/>
+    <path d="M260 140C260 140 250 120 260 100C270 80 280 80 280 60C280 40 270 30 280 20" stroke="#8B4513" stroke-width="8" stroke-linecap="round"/>
+    <!-- Coffee Bean -->
+    <path d="M280 200C300 180 340 180 360 200C380 220 380 260 360 280C340 300 300 300 280 280C260 260 260 220 280 200Z" fill="#5D4037"/>
+    <!-- Company Name -->
+    <text x="256" y="480" text-anchor="middle" font-family="Arial" font-size="48" font-weight="bold" fill="#8B4513">BeanBrews</text>
+</svg>

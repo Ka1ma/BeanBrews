@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#ffa500"/>
+  <path d="M70,50 L130,50 L120,150 L80,150 Z" fill="#fff" fill-opacity="0.8"/>
+  <path d="M75,70 L125,70" stroke="#ffd700" stroke-width="4"/>
+  <path d="M73,100 L117,100" stroke="#ffd700" stroke-width="4"/>
+  <path d="M71,130 L109,130" stroke="#ffd700" stroke-width="4"/>
+  <text x="100" y="180" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Orange Juice</text>
+</svg>

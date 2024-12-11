@@ -1,0 +1,53 @@
+{
+    "products": [
+        {
+            "productID": "COFFEE001",
+            "productName": "Espresso",
+            "category": "Coffee",
+            "unitPrice": 120.00,
+            "description": "Strong brewed coffee"
+        },
+        {
+            "productID": "COFFEE002",
+            "productName": "Cappuccino",
+            "category": "Coffee",
+            "unitPrice": 150.00,
+            "description": "Espresso with steamed milk foam"
+        },
+        {
+            "productID": "COFFEE003",
+            "productName": "Latte",
+            "category": "Coffee",
+            "unitPrice": 150.00,
+            "description": "Espresso with steamed milk"
+        },
+        {
+            "productID": "TEA001",
+            "productName": "Green Tea",
+            "category": "Tea",
+            "unitPrice": 100.00,
+            "description": "Traditional green tea"
+        },
+        {
+            "productID": "TEA002",
+            "productName": "Earl Grey",
+            "category": "Tea",
+            "unitPrice": 100.00,
+            "description": "Black tea with bergamot oil"
+        },
+        {
+            "productID": "PASTRY001",
+            "productName": "Croissant",
+            "category": "Pastries",
+            "unitPrice": 80.00,
+            "description": "Buttery, flaky pastry"
+        },
+        {
+            "productID": "PASTRY002",
+            "productName": "Chocolate Muffin",
+            "category": "Pastries",
+            "unitPrice": 90.00,
+            "description": "Rich chocolate muffin"
+        }
+    ]
+}

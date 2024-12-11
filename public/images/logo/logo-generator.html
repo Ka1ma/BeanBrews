@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BeanBrews Logo Generator</title>
+</head>
+<body>
+    <canvas id="logoCanvas" width="200" height="200"></canvas>
+    <script>
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set background
+        ctx.fillStyle = '#6f4e37';
+        ctx.fillRect(0, 0, 200, 200);
+
+        // Draw coffee cup
+        ctx.beginPath();
+        ctx.fillStyle = '#fff';
+        ctx.moveTo(50, 80);
+        ctx.bezierCurveTo(50, 150, 150, 150, 150, 80);
+        ctx.lineTo(140, 60);
+        ctx.lineTo(60, 60);
+        ctx.closePath();
+        ctx.fill();
+
+        // Draw steam
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(80, 50);
+        ctx.bezierCurveTo(85, 40, 95, 45, 90, 35);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(100, 45);
+        ctx.bezierCurveTo(105, 35, 115, 40, 110, 30);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(120, 50);
+        ctx.bezierCurveTo(125, 40, 135, 45, 130, 35);
+        ctx.stroke();
+
+        // Add text
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 24px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('BeanBrews', 100, 180);
+    </script>
+</body>
+</html>
