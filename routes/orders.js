@@ -3,8 +3,9 @@ const router = express.Router();
 const Order = require('../models/Order');
 const Product = require('../models/Product');
 
-// Get all orders
-router.get('/', async (req, res) => {
+// Get all orders and create new order
+router.route('/')
+  .get(async (req, res) => {
     try {
         const orders = await Order.find()
             .populate('customerID')
@@ -13,25 +14,8 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-});
-
-// Get one order
-router.get('/:id', async (req, res) => {
-    try {
-        const order = await Order.findOne({ orderID: req.params.id })
-            .populate('customerID')
-            .populate('items.productID');
-        if (!order) {
-            return res.status(404).json({ message: 'Order not found' });
-        }
-        res.json(order);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// Create order
-router.post('/', async (req, res) => {
+  })
+  .post(async (req, res) => {
     const session = await Order.startSession();
     session.startTransaction();
 
@@ -76,10 +60,27 @@ router.post('/', async (req, res) => {
     } finally {
         session.endSession();
     }
-});
+  });
+
+// Get order by ID
+router.route('/:id')
+  .get(async (req, res) => {
+    try {
+        const order = await Order.findOne({ orderID: req.params.id })
+            .populate('customerID')
+            .populate('items.productID');
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+        res.json(order);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+  });
 
 // Update order status
-router.patch('/:id/status', async (req, res) => {
+router.route('/:id/status')
+  .patch(async (req, res) => {
     try {
         const order = await Order.findOne({ orderID: req.params.id });
         if (!order) {
@@ -92,10 +93,11 @@ router.patch('/:id/status', async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
-});
+  });
 
 // Cancel order
-router.delete('/:id', async (req, res) => {
+router.route('/:id')
+  .delete(async (req, res) => {
     const session = await Order.startSession();
     session.startTransaction();
 
@@ -125,6 +127,6 @@ router.delete('/:id', async (req, res) => {
     } finally {
         session.endSession();
     }
-});
+  });
 
 module.exports = router;
