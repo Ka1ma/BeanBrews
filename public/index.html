@@ -52,6 +52,45 @@
         </div>
     </section>
 
+    <section id="inputs-view">
+        <h2>Your Entries</h2>
+        <div id="product-entries">
+            <h3>Products</h3>
+            <ul id="product-list"></ul>
+        </div>
+        <div id="order-entries">
+            <h3>Orders</h3>
+            <ul id="order-list"></ul>
+        </div>
+    </section>
+
+    <script>
+        // Example script to populate entries (replace with actual logic)
+        const products = [
+            { ProductID: 'P001', ProductName: 'Coffee', Category: 'Beverage', PriceUnit: 10.50, StockLevel: 100 },
+            // Add more products here
+        ];
+
+        const orders = [
+            { orderID: 'O001', totalAmount: 21.00, paymentMethod: 'cash', products: ['P001'] },
+            // Add more orders here
+        ];
+
+        const productList = document.getElementById('product-list');
+        products.forEach(product => {
+            const li = document.createElement('li');
+            li.textContent = `${product.ProductID}: ${product.ProductName} - ${product.Category} - $${product.PriceUnit} - Stock: ${product.StockLevel}`;
+            productList.appendChild(li);
+        });
+
+        const orderList = document.getElementById('order-list');
+        orders.forEach(order => {
+            const li = document.createElement('li');
+            li.textContent = `Order ID: ${order.orderID}, Total: $${order.totalAmount}, Payment: ${order.paymentMethod}`;
+            orderList.appendChild(li);
+        });
+    </script>
+
     <footer>
         <p>&copy; 2025 BeanBrews. All rights reserved.</p>
     </footer>
