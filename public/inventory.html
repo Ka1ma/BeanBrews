@@ -6,7 +6,7 @@
     <title>BeanBrews - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="inventory.css">
 </head>
 <body>
     <header>
@@ -25,32 +25,25 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="text">
-            <h1>Welcome to Bean&Brew</h1>
-            <p>Your go-to place for freshly brewed coffee and a cozy ambiance. Dive into our menu and experience the best of every brew!</p>
-            <a href="#menu">Explore Menu</a>
-        </div>
-        
-    </section>
+    <h1 style="text-align: center;">Add Inventory</h1>
+    <form id="addInventoryForm" action="/addInventory" method="POST">
+        <label for="inventoryID">Inventory ID:</label>
+        <input type="number" id="inventoryID" name="InventoryID" required>
 
-    <section class="features">
-        <div class="feature-card">
-            <img src="faqback1.png" alt="Feature 1">
-            <h3>Quality Coffee</h3>
-            <p>Only the finest beans, freshly brewed every time.</p>
-        </div>
-        <div class="feature-card">
-            <img src="c1.jpg" alt="Feature 2">
-            <h3>Cozy Ambiance</h3>
-            <p>Relax and unwind in our serene atmosphere.</p>
-        </div>
-        <div class="feature-card">
-            <img src="c3.jpg" alt="Feature 3">
-            <h3>Friendly Service</h3>
-            <p>Our staff is here to make your experience memorable.</p>
-        </div>
-    </section>
+        <label for="currentStock">Current Stock:</label>
+        <input type="number" id="currentStock" name="CurrentStock" required>
+
+        <label for="reOrderLevel">Reorder Level:</label>
+        <input type="number" id="reOrderLevel" name="ReOrderLevel" required>
+
+        <label for="lastRestockDate">Last Restock Date:</label>
+        <input type="date" id="lastRestockDate" name="LastRestockDate" required>
+
+        <label for="supplierID">Supplier ID:</label>
+        <input type="number" id="supplierID" name="SupplierID" required>
+
+        <button type="submit">Add Inventory</button>
+    </form>
 
     <footer>
         <p>&copy; 2025 BeanBrews. All rights reserved.</p>

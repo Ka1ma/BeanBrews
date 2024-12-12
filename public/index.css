@@ -1,0 +1,110 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f3f1;
+    color: #3e3d3c;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 10%;
+    background-color: #6c584c;
+    color: white;
+}
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f3f1;
+    color: #3e3d3c;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 10%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('coffee-beans-top-view-white-background-space-text_176474-5028.avif') center / cover no-repeat;
+    color: white;
+    height: 80vh;
+}
+
+.hero .text {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    color: #d9d3b3;
+}
+
+.hero p {
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+.hero a {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #3e3d3c;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.hero a:hover {
+    background-color: #6c584c;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 10%;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.feature-card {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.feature-card img {
+    width: 50px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: #3e3d3c;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #6c584c;
+}
+
+/* Footer */
+footer {
+    padding: 20px 10%;
+    background-color: #3e3d3c;
+    color: white;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+}

@@ -3,143 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeanBrews - Order</title>
+    <title>BeanBrews - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f3f1;
-            color: #3e3d3c;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10%;
-            background-color: #6c584c;
-            color: white;
-        }
-
-        header .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #d9d3b3;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav ul li {
-            font-size: 1rem;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #d9d3b3;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #fff;
-        }
-
-        /* Order Section */
-        .order {
-            padding: 50px 10%;
-            text-align: center;
-        }
-
-        .order h1 {
-            font-size: 2.5rem;
-            color: #6c584c;
-        }
-
-        .order .order-list {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 5px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .order .order-list .item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .order .order-list .item .quantity {
-            color: #6c584c;
-        }
-
-        .order .order-list .item .price {
-            color: #3e3d3c;
-            font-weight: 600;
-        }
-
-        .order .total {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            color: #6c584c;
-        }
-
-        /* Footer */
-        footer {
-            padding: 20px 10%;
-            background-color: #3e3d3c;
-            color: white;
-            text-align: center;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-        }
-    </style>
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="supplier.css">
 </head>
 <body>
     <header>
         <div class="logo">BeanBrews</div>
-        <nav>
+        <nav class="sidenav">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="employee.html">Employee</a></li>
+                <li><a href="financialRecord.html">Financial Record</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="salesTransaction.html">Sales Transaction</a></li>
+                <li><a href="supplier.html">Supplier</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="order">
-        <h1>Your Order</h1>
-        <div class="order-list">
-            <div class="item">
-                <span>Espresso</span>
-                <span class="quantity">x1</span>
-                <span class="price">$3.00</span>
-            </div>
-            <div class="item">
-                <span>Latte</span>
-                <span class="quantity">x2</span>
-                <span class="price">$8.00</span>
-            </div>
-            <div class="item">
-                <span>Cappuccino</span>
-                <span class="quantity">x1</span>
-                <span class="price">$4.50</span>
-            </div>
-        </div>
-        <div class="total">
-            Total: $15.50
-        </div>
-    </section>
+    <form id="orderForm" action="/addOrder" method="POST">
+        <!-- Order ID -->
+        <label for="orderID">Order ID:</label>
+        <input type="text" id="orderID" name="orderID" placeholder="e.g., O001" required>
+        <br><br>
+    
+        <!-- Order Date -->
+        <label for="orderDate">Order Date:</label>
+        <input type="date" id="orderDate" name="orderDate" required>
+        <br><br>
+    
+        <!-- Total Amount -->
+        <label for="totalAmount">Total Amount:</label>
+        <input type="number" id="totalAmount" name="totalAmount" step="0.01" placeholder="e.g., 100.00" required>
+        <br><br>
+    
+        <!-- Payment Method -->
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+            <option value="GCash">GCash</option>
+            <option value="Cash">Cash</option>
+            <option value="Card">Card</option>
+        </select>
+        <br><br>
+    
+        <!-- GCash Reference Number (Only if GCash is selected) -->
+        <label for="gcashRefNumber">GCash Reference Number (if GCash):</label>
+        <input type="text" id="gcashRefNumber" name="gcashRefNumber" placeholder="e.g., 123456789" disabled>
+        <br><br>
+    
+        <!-- Products -->
+        <label for="products">Products:</label>
+        <textarea id="products" name="products" placeholder="e.g., Coffee: 2, Tea: 1" rows="4" cols="50" required></textarea>
+        <br><br>
+    
+        <!-- Submit Button -->
+        <button type="submit">Submit Order</button>
+    </form>
+    
 
     <footer>
         <p>&copy; 2025 BeanBrews. All rights reserved.</p>

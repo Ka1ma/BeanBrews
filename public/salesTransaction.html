@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeanBrews - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="salesTransaction.css">
+</head>
+<body>
+    <header>
+        <div class="logo">BeanBrews</div>
+        <nav class="sidenav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="employee.html">Employee</a></li>
+                <li><a href="financialRecord.html">Financial Record</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="salesTransaction.html">Sales Transaction</a></li>
+                <li><a href="supplier.html">Supplier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form id="salesTransactionForm" action="/addSalesTransaction" method="POST">
+        <!-- Transaction ID -->
+        <label for="transactionID">Transaction ID:</label>
+        <input type="text" id="transactionID" name="TransactionID" placeholder="e.g., T001" required>
+        <br><br>
+    
+        <!-- Date -->
+        <label for="date">Transaction Date:</label>
+        <input type="date" id="date" name="Date" required>
+        <br><br>
+    
+        <!-- Product ID -->
+        <label for="productID">Product ID:</label>
+        <input type="number" id="productID" name="ProductID" placeholder="e.g., 101" required>
+        <br><br>
+    
+        <!-- Quantity Sold -->
+        <label for="quantitySold">Quantity Sold:</label>
+        <input type="number" id="quantitySold" name="QuantitySold" placeholder="e.g., 5" required>
+        <br><br>
+    
+        <!-- Total Sales Amount -->
+        <label for="totalSalesAmount">Total Sales Amount:</label>
+        <input type="number" id="totalSalesAmount" name="TotalSalesAmount" step="0.01" placeholder="e.g., 100.00" required>
+        <br><br>
+    
+        <!-- Submit Button -->
+        <button type="submit">Submit Sales Transaction</button>
+    </form>
+    
+
+    <footer>
+        <p>&copy; 2025 BeanBrews. All rights reserved.</p>
+    </footer>
+</body>
+</html>

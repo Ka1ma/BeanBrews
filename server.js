@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // MongoDB connection
 mongoose
   .connect(atlasURI, {
-    useNewUrlParser: true,
+    useNewUrlParser: true, 
     useUnifiedTopology: true,
   })
   .then(() => {
@@ -30,13 +30,13 @@ mongoose
 
 // Mongoose Schema for EMPLOYEE
 const EmployeeSchema = new mongoose.Schema({
-  employeeID: { type: String, required: true },  // Employee ID
-  orderID: String,
-  firstName: { type: String, required: true },lastName: { type: String, required: true },
-  LastName: String,
+  EmployeeID: { type: String, required: true },  // Updated casing
+  OrderID: String,
+  FirstName: { type: String, required: true },
+  LastName: { type: String, required: true },
   ContactInfo: String,
   Role: String,
-  Salary: Decimal128,
+  Salary: mongoose.Types.Decimal128,
   HireDate: Date,
   Status: String,
   Address: String,
@@ -88,7 +88,7 @@ app.post("/addEmployee", (req, res) => {
 
 
 // Mongoose Schema for FINANCIALRECORD
-const FinancialRecordschema = new mongoose.Schema({
+const FinancialRecordSchema = new mongoose.Schema({
   Month: { type: String, required: true },  
   TotalSales: Decimal128,
   TotalExpenses: Decimal128,
@@ -114,7 +114,7 @@ app.post("/addFinancialRecord", (req, res) =>{
     CategoryBreakdown 
   });
 
-  // Save the new EMPLOYEE to the database
+  // Save the new FINANCIALRECORD to the database
   newFinancialRecord.save()
     .then(() => {
       console.log("Financial Record placed successfully!");
@@ -134,12 +134,12 @@ app.post("/addFinancialRecord", (req, res) =>{
 
 
 // Mongoose Schema for INVENTORY
-const Inventoryschema = new mongoose.Schema({
-    InventoryID: { type: Integer, required: true },  
-    CurrentStock: Integer,
-    ReOrderLevel: Integer,
-    LastRestockDate: Date,
-    SupplierID: Integer,
+const InventorySchema = new mongoose.Schema({
+    InventoryID: { type: Number, required: true }, // Fixed from Integer to Number
+    CurrentStock: { type: Number, required: true },
+    ReOrderLevel: { type: Number, required: true },
+    LastRestockDate: { type: Date, required: true },
+    SupplierID: { type: Number, required: true },
   });
   
   const Inventory = mongoose.model('Inventory ', InventorySchema);
@@ -148,13 +148,14 @@ const Inventoryschema = new mongoose.Schema({
   app.post("/addInventory", (req, res) =>{
       console.log("Form data received:", req.body);
       
-      const { CurrentStock,
+      const { InventoryID, CurrentStock,
         ReOrderLevel,
         LastRestockDate,
         SupplierID } = req.body;
   
     // Create a new INVENTORY instance using the submitted data
     const newInventory = new Inventory({
+        InventoryID,
         CurrentStock,
         ReOrderLevel,
         LastRestockDate,
@@ -248,63 +249,74 @@ const OrderSchema = new mongoose.Schema({
 
 
   
-// Mongoose Schema for PRODUCT
-const Productschema = new mongoose.Schema({
-    ProductID: { type: String, required: true },  
-    OrderID: String,
-    ProductName:String, 
-    Category: String,
-    PriceUnit: Decimal128,
-    StockLevel: Integer
-  });
-  
-  const Product = mongoose.model('Product', ProductSchema);
-  
-  // POST route to handle PRODUCT submission
-  app.post("/addProduct", (req, res) =>{
-      console.log("Form data received:", req.body);
-      
-      const { ProductID,  
-      OrderID,
-      ProductName, 
-      Category,
-      PriceUnit,
-      StockLevel } = req.body;
-  
-    // Create a new PRODUCT instance using the submitted data
-    const newProduct = new Product({
-        ProductID,  
+// Mongoose Schema for PRODUCTapp.post("/addProduct", (req, res) => {
+  const ProductSchema = new mongoose.Schema({
+    ProductID: { type: String, required: true },  // Product ID
+    OrderID: String,                              // Order ID
+    ProductName: { type: String, required: true },// Product Name
+    Category: String,                             // Category
+    PriceUnit: { type: mongoose.Types.Decimal128, required: true }, // Price Per Unit
+    StockLevel: { type: Number, required: true }, // Stock Level
+});
+
+// Create the Product model
+const Product = mongoose.model('Product', ProductSchema);
+
+// POST route to handle PRODUCT submission
+app.post('/addProduct', (req, res) => {
+    console.log('Form data received:', req.body);
+
+    // Destructure and log fields
+    const { ProductID, OrderID, ProductName, Category, PriceUnit, StockLevel } = req.body;
+    console.log({
+        ProductID,
         OrderID,
-        ProductName, 
+        ProductName,
         Category,
         PriceUnit,
-        StockLevel 
+        StockLevel,
     });
-  
-    // Save the new PRODUCT to the database
-    newProduct.save()
-      .then(() => {
-        console.log("Product Record placed successfully!");
-        // Send a JSON response indicating success
-        res.status(200).json({ success: true, message: 'Product Record placed successfully' });
-      })
-      .catch((error) => {
-        console.error("Error updating Product Record:", error);
-        res.status(500).json({ success: false, message: "There was an error updating Product Record." });
-      });
-  })  
+
+    // Validate required fields
+    if (!ProductID || !PriceUnit || !StockLevel) {
+        return res.status(400).json({ success: false, message: 'Missing required fields' });
+    }
+
+    // Create a new product
+    const newProduct = new Product({
+        ProductID,
+        OrderID,
+        ProductName,
+        Category,
+        PriceUnit: mongoose.Types.Decimal128.fromString(String(PriceUnit)),
+        StockLevel,
+    });
+
+    // Save the product to the database
+    newProduct
+        .save()
+        .then(() => {
+            console.log('Product Record placed successfully!');
+            res.status(200).json({ success: true, message: 'Product Record placed successfully' });
+        })
+        .catch((error) => {
+            console.error('Error updating Product Record:', error);
+            res.status(500).json({ success: false, message: 'There was an error updating Product Record.' });
+        });
+});
+
+
 
 
   // Mongoose Schema for SALESTRANSACTION
 const SalesTransactionschema = new mongoose.Schema({
-    TransactionID: { type: Integer, required: true },  
-    Date: Date,
-    ProductID: Integer,
-    QuantitySold:Integer, 
-    TotalSalesAmount: Decimal128,
+    Date: { type: Date, required: true },
+    ProductID: { type: Number, required: true },
+    QuantitySold: { type: Number, required: true },
+    TotalSalesAmount: { type: mongoose.Types.Decimal128, required: true },
   });
   
-  const SalesTransaction = mongoose.model('SalesTransaction', SalesTransactionSchema);
+  const SalesTransaction = mongoose.model('SalesTransaction', SalesTransactionschema);
   
   // POST route to handle SALESTRANSACTION submission
   app.post("/addSalesTransaction", (req, res) =>{
@@ -340,9 +352,9 @@ const SalesTransactionschema = new mongoose.Schema({
 
 
   // Mongoose Schema for SUPPLIER
-  const Supplierschema = new mongoose.Schema({
+  const SupplierSchema = new mongoose.Schema({
     SupplierID : { type: String, required: true },  
-    InventoryID: Integer,
+    InventoryID: Number,
     SupplierName: String,
     ContactNumber:String, 
     Address: String,
@@ -355,19 +367,21 @@ const SalesTransactionschema = new mongoose.Schema({
   app.post("/addSupplier", (req, res) =>{
       console.log("Form data received:", req.body);
       
-      const { TransactionID,  
-      Date,
-      ProductID,
-      QuantitySold, 
-      TotalSalesAmount } = req.body;
+      const { SupplierID,  
+        InventoryID,
+        SupplierName,
+        ContactNumber,
+        Address, 
+        SuppliedItems } = req.body;        
   
     // Create a new SUPPLIER instance using the submitted data
     const newSupplier = new Supplier({
-      TransactionID,  
-      Date,
-      ProductID,
-      QuantitySold, 
-      TotalSalesAmount 
+      SupplierID,  
+      InventoryID,
+      SupplierName,
+      ContactNumber, 
+      Address,
+      SuppliedItems
     });
   
     // Save the new SUPPLIER to the database
@@ -389,54 +403,34 @@ const SalesTransactionschema = new mongoose.Schema({
   // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public"))); // Added to serve static files (HTML, CSS, JS, etc.)
 
-// Route for about.html 
+// Route for supplier.html 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "about.html")); 
+    res.sendFile(path.join(__dirname, "public", "supplier.html")); 
   });
 
 // Route for contact.html 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "contact.html")); 
+    res.sendFile(path.join(__dirname, "public", "product.html")); 
   });
    
 // Route for faq.html 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "faq.html")); 
+    res.sendFile(path.join(__dirname, "public", "order.html")); 
   });
 
-// Route for forgotpassword.html 
+// Route for FinancialRecord.html 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "forgotpassword.html")); 
+    res.sendFile(path.join(__dirname, "public", "financialRecord.html")); 
   });
 
-  // Route for login.html 
+  // Route for inventory.html 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "login.html")); 
+    res.sendFile(path.join(__dirname, "public", "inventory.html")); 
   });
 
 // Route for menu.html 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "menu.html")); 
-  });
-
-// Route for order.html 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "order.html")); 
-  });
-
-// Route for signup.html 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "signup.html")); 
-  });
-
-// Route for test.html 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "test.html")); 
-  });
-
-// Route for trackorder.html 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "trackorder.html")); 
+    res.sendFile(path.join(__dirname, "public", "salesTransaction.html")); 
   });
 
 // Route for the homepage (serve the index.html file)

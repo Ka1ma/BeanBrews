@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeanBrews - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="financialRecord.css">
+</head>
+<body>
+    <header>
+        <div class="logo">BeanBrews</div>
+        <nav class="sidenav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="employee.html">Employee</a></li>
+                <li><a href="financialRecord.html">Financial Record</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="salesTransaction.html">Sales Transaction</a></li>
+                <li><a href="supplier.html">Supplier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form id="productForm" action="/addProduct" method="POST">
+        <!-- Product ID -->
+        <label for="productID">Product ID:</label>
+        <input type="text" id="productID" name="ProductID" placeholder="e.g., P001" required>
+        <br><br>
+    
+        <!-- Order ID -->
+        <label for="orderID">Order ID (Optional):</label>
+        <input type="text" id="orderID" name="OrderID" placeholder="e.g., O001">
+        <br><br>
+    
+        <!-- Product Name -->
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="ProductName" placeholder="e.g., Coffee" required>
+        <br><br>
+    
+        <!-- Category -->
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="Category" placeholder="e.g., Beverage" required>
+        <br><br>
+    
+        <!-- Price Unit -->
+        <label for="priceUnit">Price Per Unit:</label>
+        <input type="number" id="priceUnit" name="PriceUnit" step="0.01" placeholder="e.g., 10.50" required>
+        <br><br>
+    
+        <!-- Stock Level -->
+        <label for="stockLevel">Stock Level:</label>
+        <input type="number" id="stockLevel" name="StockLevel" placeholder="e.g., 100" required>
+        <br><br>
+    
+        <!-- Submit Button -->
+        <button type="submit">Submit Product</button>
+    </form>
+    
+
+    <footer>
+        <p>&copy; 2025 BeanBrews. All rights reserved.</p>
+    </footer>
+</body>
+</html>
