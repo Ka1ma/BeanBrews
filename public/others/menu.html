@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeanBrews - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f3f1;
+            color: #3e3d3c;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background-color: #6c584c;
+            color: white;
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d9d3b3;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 1rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #d9d3b3;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 50px 10%;
+        }
+
+        .menu h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #6c584c;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .menu-item {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .menu-item h3 {
+            margin: 15px 0;
+            font-size: 1.5rem;
+            color: #3e3d3c;
+        }
+
+        .menu-item p {
+            font-size: 1rem;
+            color: #6c584c;
+        }
+
+        .menu-item .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #3e3d3c;
+            margin: 10px 0;
+        }
+
+        .menu-item button {
+            padding: 10px 20px;
+            background-color: #6c584c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .menu-item button:hover {
+            background-color: #3e3d3c;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px 10%;
+            background-color: #3e3d3c;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BeanBrews</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="menu">
+        <h1>Our Menu</h1>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="c1.jpg" alt="Espresso">
+                <h3>Espresso</h3>
+                <p>A classic shot of bold espresso.</p>
+                <div class="price">$3.00</div>
+                <button>Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="c3.jpg" alt="Cappuccino">
+                <h3>Cappuccino</h3>
+                <p>Creamy and delightful cappuccino.</p>
+                <div class="price">$4.50</div>
+                <button>Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="faqback1.png" alt="Latte">
+                <h3>Latte</h3>
+                <p>Smooth and rich latte, perfect for any time.</p>
+                <div class="price">$4.00</div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 BeanBrews. All rights reserved.</p>
+    </footer>
+</body>
+</html>

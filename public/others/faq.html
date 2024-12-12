@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeanBrews - FAQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f3f1;
+            color: #3e3d3c;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background-color: #6c584c;
+            color: white;
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d9d3b3;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 1rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #d9d3b3;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 50px 10%;
+        }
+
+        .faq h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #6c584c;
+        }
+
+        .faq-item {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #3e3d3c;
+            cursor: pointer;
+        }
+
+        .faq-item p {
+            margin-top: 10px;
+            font-size: 1rem;
+            display: none;
+            color: #6c584c;
+        }
+
+        .faq-item.open p {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px 10%;
+            background-color: #3e3d3c;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                item.querySelector('h3').addEventListener('click', () => {
+                    item.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">BeanBrews</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="faq">
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-item">
+            <h3>What are your opening hours?</h3>
+            <p>We are open daily from 7:00 AM to 10:00 PM.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do you offer takeaway services?</h3>
+            <p>Yes, we do! You can place an order for takeaway or delivery through our website.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do you have vegan options?</h3>
+            <p>Absolutely! We offer a variety of vegan-friendly drinks and snacks.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 BeanBrews. All rights reserved.</p>
+    </footer>
+</body>
+</html>

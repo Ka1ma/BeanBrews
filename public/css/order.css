@@ -1,0 +1,25 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f3f1;
+    color: #3e3d3c;
+    margin: 0;
+    padding: 0;
+}
+
+.order {
+    padding: 50px 10%;
+    text-align: center;
+}
+
+.order h1 {
+    font-size: 2.5rem;
+    color: #6c584c;
+}
+
+.order .order-list {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

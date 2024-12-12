@@ -3,245 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory - BeanBrews POS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/navbar.css" rel="stylesheet">
+    <title>BeanBrews - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="inventory.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">BeanBrews POS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="pos.html">POS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="orders.html">Orders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sales.html">Sales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="customers.html">Customers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="inventory.html">Inventory</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="employees.html">Employees</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="suppliers.html">Suppliers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="feedback.html">Feedback</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="financial.html">Financial</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <header>
+        <div class="logo">BeanBrews</div>
+        <nav class="sidenav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="employee.html">Employee</a></li>
+                <li><a href="financialRecord.html">Financial Record</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="salesTransaction.html">Sales Transaction</a></li>
+                <li><a href="supplier.html">Supplier</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="dashboard-container">
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <h3>Total Items</h3>
-                    <div class="value" id="total-items">0</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <h3>Low Stock Items</h3>
-                    <div class="value" id="low-stock-items">0</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <h3>Out of Stock</h3>
-                    <div class="value" id="out-of-stock-items">0</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <h3>Total Value</h3>
-                    <div class="value" id="total-value">$0.00</div>
-                </div>
-            </div>
-        </div>
+    <h1 style="text-align: center;">Add Inventory</h1>
+    <form id="addInventoryForm" action="/addInventory" method="POST">
+        <label for="inventoryID">Inventory ID:</label>
+        <input type="number" id="inventoryID" name="InventoryID" required>
 
-        <div class="dashboard-card">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Inventory Management</h2>
-                <div>
-                    <button class="btn btn-outline-primary me-2" onclick="openStockAdjustmentModal()">
-                        <i class="bi bi-arrow-left-right"></i> Stock Adjustment
-                    </button>
-                    <button class="btn btn-primary" onclick="openAddInventoryModal()">
-                        <i class="bi bi-plus-lg"></i> Add Item
-                    </button>
-                </div>
-            </div>
+        <label for="currentStock">Current Stock:</label>
+        <input type="number" id="currentStock" name="CurrentStock" required>
 
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search inventory..." id="inventory-search">
-                        <button class="btn btn-outline-secondary" type="button">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="category-filter">
-                        <option value="">All Categories</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="stock-status-filter">
-                        <option value="">All Stock Status</option>
-                        <option value="in-stock">In Stock</option>
-                        <option value="low-stock">Low Stock</option>
-                        <option value="out-of-stock">Out of Stock</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-outline-primary w-100" onclick="exportInventory()">
-                        <i class="bi bi-download"></i> Export
-                    </button>
-                </div>
-            </div>
+        <label for="reOrderLevel">Reorder Level:</label>
+        <input type="number" id="reOrderLevel" name="ReOrderLevel" required>
 
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Category</th>
-                            <th>SKU</th>
-                            <th>Current Stock</th>
-                            <th>Min. Stock</th>
-                            <th>Unit Price</th>
-                            <th>Total Value</th>
-                            <th>Last Updated</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="inventory-table-body">
-                        <!-- Inventory items will be loaded here -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+        <label for="lastRestockDate">Last Restock Date:</label>
+        <input type="date" id="lastRestockDate" name="LastRestockDate" required>
 
-    <!-- Add Inventory Modal -->
-    <div class="modal fade" id="addInventoryModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Inventory Item</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addInventoryForm">
-                        <div class="mb-3">
-                            <label class="form-label">Item Name</label>
-                            <input type="text" class="form-control" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <select class="form-select" name="category" required>
-                                <!-- Categories will be loaded dynamically -->
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">SKU</label>
-                            <input type="text" class="form-control" name="sku" required>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Current Stock</label>
-                                <input type="number" class="form-control" name="stock" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Minimum Stock</label>
-                                <input type="number" class="form-control" name="minStock" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Unit Price</label>
-                                <input type="number" class="form-control" name="unitPrice" step="0.01" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Unit</label>
-                                <input type="text" class="form-control" name="unit" placeholder="e.g., kg, pcs" required>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="saveInventoryItem()">Save Item</button>
-                </div>
-            </div>
-        </div>
-    </div>
+        <label for="supplierID">Supplier ID:</label>
+        <input type="number" id="supplierID" name="SupplierID" required>
 
-    <!-- Stock Adjustment Modal -->
-    <div class="modal fade" id="stockAdjustmentModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Stock Adjustment</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="stockAdjustmentForm">
-                        <div class="mb-3">
-                            <label class="form-label">Item</label>
-                            <select class="form-select" name="item" required>
-                                <!-- Items will be loaded dynamically -->
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Adjustment Type</label>
-                            <select class="form-select" name="adjustmentType" required>
-                                <option value="add">Add Stock</option>
-                                <option value="remove">Remove Stock</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Quantity</label>
-                            <input type="number" class="form-control" name="quantity" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Reason</label>
-                            <textarea class="form-control" name="reason" required></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="saveStockAdjustment()">Save Adjustment</button>
-                </div>
-            </div>
-        </div>
-    </div>
+        <button type="submit">Add Inventory</button>
+    </form>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/inventory.js"></script>
+    <footer>
+        <p>&copy; 2025 BeanBrews. All rights reserved.</p>
+    </footer>
 </body>
 </html>

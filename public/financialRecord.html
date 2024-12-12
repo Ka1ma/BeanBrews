@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeanBrews - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="financialRecord.css">
+</head>
+<body>
+    <header>
+        <div class="logo">BeanBrews</div>
+        <nav class="sidenav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="employee.html">Employee</a></li>
+                <li><a href="financialRecord.html">Financial Record</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="salesTransaction.html">Sales Transaction</a></li>
+                <li><a href="supplier.html">Supplier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form id="financialRecordForm" action="/addFinancialRecord" method="POST">
+        <!-- Month -->
+        <label for="month">Month:</label>
+        <input type="text" id="month" name="Month" placeholder="e.g., January" required>
+        <br><br>
+
+        <!-- Total Sales -->
+        <label for="totalSales">Total Sales:</label>
+        <input type="number" id="totalSales" name="TotalSales" step="0.01" placeholder="e.g., 1000.00" required>
+        <br><br>
+
+        <!-- Total Expenses -->
+        <label for="totalExpenses">Total Expenses:</label>
+        <input type="number" id="totalExpenses" name="TotalExpenses" step="0.01" placeholder="e.g., 500.00" required>
+        <br><br>
+
+        <!-- Net Profit -->
+        <label for="netProfit">Net Profit:</label>
+        <input type="number" id="netProfit" name="NetProfit" step="0.01" placeholder="e.g., 500.00" required>
+        <br><br>
+
+        <!-- Category Breakdown -->
+        <label for="categoryBreakdown">Category Breakdown:</label>
+        <textarea id="categoryBreakdown" name="CategoryBreakdown" placeholder="e.g., Food: 50%, Drinks: 30%, Misc: 20%" rows="4" cols="50" required></textarea>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Financial Record</button>
+    </form>
+
+    <footer>
+        <p>&copy; 2025 BeanBrews. All rights reserved.</p>
+    </footer>
+</body>
+</html>

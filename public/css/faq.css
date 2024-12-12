@@ -1,0 +1,25 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f3f1;
+    color: #3e3d3c;
+    margin: 0;
+    padding: 0;
+}
+
+.faq {
+    padding: 50px 10%;
+    text-align: center;
+}
+
+.faq h1 {
+    font-size: 2.5rem;
+    color: #6c584c;
+}
+
+.faq-item {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
