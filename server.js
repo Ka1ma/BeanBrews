@@ -80,13 +80,6 @@ app.post("/addEmployee", (req, res) => {
     });
 })
 
-
-
-
-
-
-
-
 // Mongoose Schema for FINANCIALRECORD
 const FinancialRecordSchema = new mongoose.Schema({
   Month: { type: String, required: true },  
@@ -126,12 +119,6 @@ app.post("/addFinancialRecord", (req, res) =>{
       res.status(500).json({ success: false, message: "There was an error adding Financial Record." });
     });
 })
-
-
-
-
-
-
 
 // Mongoose Schema for INVENTORY
 const InventorySchema = new mongoose.Schema({
@@ -176,11 +163,6 @@ const InventorySchema = new mongoose.Schema({
   })  
 
 
-
-
-
-
-
 // Mongoose Schema for ORDER
 const OrderSchema = new mongoose.Schema({
     orderID: { type: String, required: true }, // Order ID
@@ -212,7 +194,12 @@ const OrderSchema = new mongoose.Schema({
   // POST route to handle ORDER submission
   app.post("/addOrder", (req, res) => {
     console.log("Form data received:", req.body);
-  
+
+    // Check for missing fields
+    if (!req.body.orderID || !req.body.orderDate || !req.body.totalAmount || !req.body.paymentMethod || !req.body.products || (req.body.paymentMethod === 'gcash' && !req.body.gcashRefNumber)) {
+      return res.status(400).json({ success: false, message: "Missing required fields." });
+    }
+
     // Destructure the required fields from the request body
     const { 
       orderID, 
@@ -222,7 +209,7 @@ const OrderSchema = new mongoose.Schema({
       gcashRefNumber, 
       products 
     } = req.body;
-  
+
     // Create a new ORDER instance using the submitted data
     const newOrder = new Order({
         orderID, // Order ID
@@ -232,7 +219,7 @@ const OrderSchema = new mongoose.Schema({
         gcashRefNumber, // GCash Reference Number (if applicable)
         products // Array of product objects
     });
-  
+
     // Save the new ORDER to the database
     newOrder.save()
       .then(() => {
@@ -241,15 +228,14 @@ const OrderSchema = new mongoose.Schema({
         res.status(200).json({ success: true, message: 'Order Record placed successfully' });
       })
       .catch((error) => {
+        console.error("Error details:", error);
         console.error("Error updating Order Record:", error);
-        res.status(500).json({ success: false, message: "There was an error updating Order Record." });
+        res.status(500).json({ success: false, message: `There was an error updating Order Record: ${error.message}` });
       });
   })  
 
 
-
-  
-// Mongoose Schema for PRODUCTapp.post("/addProduct", (req, res) => {
+// Mongoose Schema for PRODUCT
   const ProductSchema = new mongoose.Schema({
     ProductID: { type: String, required: true },  // Product ID
     OrderID: String,                              // Order ID
@@ -305,10 +291,7 @@ app.post('/addProduct', (req, res) => {
         });
 });
 
-
-
-
-  // Mongoose Schema for SALESTRANSACTION
+// Mongoose Schema for SALESTRANSACTION
 const SalesTransactionschema = new mongoose.Schema({
     Date: { type: Date, required: true },
     ProductID: { type: Number, required: true },
@@ -398,38 +381,36 @@ const SalesTransactionschema = new mongoose.Schema({
   })  
 
 
-
-
   // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public"))); // Added to serve static files (HTML, CSS, JS, etc.)
 
 // Route for supplier.html 
-app.get("/", (req, res) => {
+app.get("/supplier", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "supplier.html")); 
   });
 
 // Route for contact.html 
-app.get("/", (req, res) => {
+app.get("/product", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "product.html")); 
   });
    
 // Route for faq.html 
-app.get("/", (req, res) => {
+app.get("/order", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "order.html")); 
   });
 
 // Route for FinancialRecord.html 
-app.get("/", (req, res) => {
+app.get("/financialRecord", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "financialRecord.html")); 
   });
 
   // Route for inventory.html 
-app.get("/", (req, res) => {
+app.get("/inventory", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "inventory.html")); 
   });
 
 // Route for menu.html 
-app.get("/", (req, res) => {
+app.get("/salesTransaction", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "salesTransaction.html")); 
   });
 
